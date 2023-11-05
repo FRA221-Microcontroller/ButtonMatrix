@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00023efa  00000000  00000000  0002ee8c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000bc77  00000000  00000000  00052d86  2**0
+ 18 .debug_line   0000bc7f  00000000  00000000  00052d86  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000e5949  00000000  00000000  0005e9fd  2**0
+ 19 .debug_str    000e593c  00000000  00000000  0005ea05  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  000025ac  00000000  00000000  00144348  2**2
+ 20 .debug_frame  000025ac  00000000  00000000  00144344  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000068  00000000  00000000  001468f4  2**0
+ 21 .debug_line_str 0000005b  00000000  00000000  001468f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1241,36 +1241,33 @@ void CheckID(int _StudentID[11])
  8000a98:	2201      	movs	r2, #1
  8000a9a:	601a      	str	r2, [r3, #0]
 
-	if(State == 1)
+	if(State == 1 && ButtonState == 0)
  8000a9c:	4b1c      	ldr	r3, [pc, #112]	; (8000b10 <CheckID+0x1c0>)
  8000a9e:	681b      	ldr	r3, [r3, #0]
  8000aa0:	2b01      	cmp	r3, #1
  8000aa2:	d112      	bne.n	8000aca <CheckID+0x17a>
-	{
-		if(ButtonState == 0)
  8000aa4:	4b17      	ldr	r3, [pc, #92]	; (8000b04 <CheckID+0x1b4>)
  8000aa6:	881b      	ldrh	r3, [r3, #0]
  8000aa8:	2b00      	cmp	r3, #0
  8000aaa:	d10e      	bne.n	8000aca <CheckID+0x17a>
-		{
-			StudentID[i] = Number;
+	{
+		StudentID[i] = Number;
  8000aac:	4b17      	ldr	r3, [pc, #92]	; (8000b0c <CheckID+0x1bc>)
  8000aae:	681b      	ldr	r3, [r3, #0]
  8000ab0:	4a15      	ldr	r2, [pc, #84]	; (8000b08 <CheckID+0x1b8>)
  8000ab2:	6812      	ldr	r2, [r2, #0]
  8000ab4:	4917      	ldr	r1, [pc, #92]	; (8000b14 <CheckID+0x1c4>)
  8000ab6:	f841 2023 	str.w	r2, [r1, r3, lsl #2]
-			i++;
+		i++;
  8000aba:	4b14      	ldr	r3, [pc, #80]	; (8000b0c <CheckID+0x1bc>)
  8000abc:	681b      	ldr	r3, [r3, #0]
  8000abe:	3301      	adds	r3, #1
  8000ac0:	4a12      	ldr	r2, [pc, #72]	; (8000b0c <CheckID+0x1bc>)
  8000ac2:	6013      	str	r3, [r2, #0]
-			State = 0;
+		State = 0;
  8000ac4:	4b12      	ldr	r3, [pc, #72]	; (8000b10 <CheckID+0x1c0>)
  8000ac6:	2200      	movs	r2, #0
  8000ac8:	601a      	str	r2, [r3, #0]
-		}
 	}
 
 	if(memcmp(StudentID, _StudentID, sizeof(StudentID)) == 0 && ButtonState == 2048)
@@ -1297,7 +1294,6 @@ void CheckID(int _StudentID[11])
  8000af2:	f04f 4090 	mov.w	r0, #1207959552	; 0x48000000
  8000af6:	f000 fc21 	bl	800133c <HAL_GPIO_WritePin>
 	}
-
 }
  8000afa:	bf00      	nop
  8000afc:	3708      	adds	r7, #8

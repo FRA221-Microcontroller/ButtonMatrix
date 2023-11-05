@@ -6,4 +6,4 @@
 ../Core/Src/main.c:317:6:HAL_GPIO_EXTI_Callback	16	static
 ../Core/Src/main.c:326:6:ButtonMatrixRead	16	static
 ../Core/Src/main.c:351:6:CheckID	16	static
-../Core/Src/main.c:417:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:413:6:Error_Handler	4	static,ignoring_inline_asm

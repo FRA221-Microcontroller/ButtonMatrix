@@ -6,4 +6,4 @@
 ../Core/Src/main.c:317:6:HAL_GPIO_EXTI_Callback	1
 ../Core/Src/main.c:326:6:ButtonMatrixRead	3
 ../Core/Src/main.c:351:6:CheckID	24
-../Core/Src/main.c:417:6:Error_Handler	1
+../Core/Src/main.c:413:6:Error_Handler	1

@@ -389,14 +389,11 @@ void CheckID(int _StudentID[11])
 	if(i == 11){i = 0;}
 	if(ButtonState != 0 && ButtonState != 128 && ButtonState != 2048){State = 1;}
 
-	if(State == 1)
+	if(State == 1 && ButtonState == 0)
 	{
-		if(ButtonState == 0)
-		{
-			StudentID[i] = Number;
-			i++;
-			State = 0;
-		}
+		StudentID[i] = Number;
+		i++;
+		State = 0;
 	}
 
 	if(memcmp(StudentID, _StudentID, sizeof(StudentID)) == 0 && ButtonState == 2048)
@@ -404,7 +401,6 @@ void CheckID(int _StudentID[11])
 		memset(StudentID, 0, sizeof(StudentID));
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
 	}
-
 }
 
 
