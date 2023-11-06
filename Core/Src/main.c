@@ -316,11 +316,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	if(GPIO_Pin == GPIO_PIN_8)
-	{
-//		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-		NVIC_SystemReset();
-	}
+	if(GPIO_Pin == GPIO_PIN_8){NVIC_SystemReset();}
 }
 
 void ButtonMatrixRead(){
@@ -386,18 +382,18 @@ void CheckID(int _StudentID[11])
 			break;
 	}
 
-	if(i == 11){i = 0;}
 	if(ButtonState != 0 && ButtonState != 128 && ButtonState != 2048){State = 1;}
 
-	if(State == 1 && ButtonState == 0)
+	if(State == 1 && ButtonState == 0 && i < 11)
 	{
 		StudentID[i] = Number;
-		i++;
+		i = (i+1) % 11;
 		State = 0;
 	}
 
 	if(memcmp(StudentID, _StudentID, sizeof(StudentID)) == 0 && ButtonState == 2048)
 	{
+		i = 0;
 		memset(StudentID, 0, sizeof(StudentID));
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, 1);
 	}
